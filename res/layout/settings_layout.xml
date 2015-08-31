@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ToggleButton
+        android:id="@+id/global_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/global_state" />
+
+    <ToggleButton
+        android:id="@+id/player_switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/global_state"
+        android:layout_below="@+id/global_state"
+        android:layout_marginTop="22dp"
+        android:text="@string/player_switcher" />
+
+    <TextView
+        android:id="@+id/radio_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/radio_switcher"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="33dp"
+        android:text="@string/radio_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/player_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/player_switcher"
+        android:layout_alignLeft="@+id/radio_label"
+        android:text="@string/player_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="33dp"
+        android:layout_toRightOf="@+id/player_label"
+        android:text="@string/save_btn" />
+
+    <ToggleButton
+        android:id="@+id/radio_switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/player_switcher"
+        android:layout_below="@+id/player_switcher"
+        android:layout_marginTop="33dp"
+        android:text="@string/radio_switcher" />
+
+    <Button
+        android:id="@+id/close_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/save_btn"
+        android:layout_alignBottom="@+id/save_btn"
+        android:layout_alignRight="@+id/radio_label"
+        android:text="@string/close_settings" />
+
+    <TextView
+        android:id="@+id/state_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player_switcher"
+        android:layout_alignLeft="@+id/player_label"
+        android:text="@string/state_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/pin_code_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/radio_label"
+        android:layout_centerVertical="true"
+        android:text="@string/pin_code_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/radio_switcher"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/radio_label"
+        android:ems="10"
+        android:inputType="numberPassword" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

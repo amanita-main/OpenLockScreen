@@ -12,15 +12,7 @@
     -->
 
 
-    
-        <Button
-        android:id="@+id/dummy_button"
-        style="?metaButtonBarButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        
-        android:layout_weight="1"
-        android:text="@string/dummy_button" />
+
 
     <!--
          This FrameLayout insets its children based on system windows using

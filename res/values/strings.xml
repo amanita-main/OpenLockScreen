@@ -2,7 +2,15 @@
 <resources>
 
     <string name="app_name">OpenLockScreen</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+     <string name="global_state">State</string>
+     <string name="save_btn">Save</string>
+     <string name="close_settings">Close</string>
+     <string name="player_switcher">Player on earphones</string>
+     <string name="player_label">Player on earphones</string>
+     <string name="radio_label">Radio state</string>
+     <string name="state_label">State</string>
+     <string name="radio_switcher">Radio enabled</string>
+     <string name="pin_code_label">Pin code</string>
 
 </resources>
