@@ -53,6 +53,22 @@
             
         </activity>
         
+		<receiver android:name="com.lockscreen.receivers.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
+        
+		<receiver android:name="com.lockscreen.receivers.CallStateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+        
+		<receiver android:enabled="true" android:name="com.lockscreen.server.ServerPeriodSystemAlarmReceiver"/>
+		<service android:exported="false" android:name="com.hgsft.openlockscreen.LockScreenService"/>
+        
     </application>
 
 </manifest>

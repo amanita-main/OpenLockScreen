@@ -12,5 +12,6 @@
      <string name="state_label">State</string>
      <string name="radio_switcher">Radio enabled</string>
      <string name="pin_code_label">Pin code</string>
+     <string name="btn_ok">OK</string>
 
 </resources>

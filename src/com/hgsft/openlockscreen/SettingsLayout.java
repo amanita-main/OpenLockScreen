@@ -20,74 +20,48 @@ import android.widget.ToggleButton;
 
 public class SettingsLayout extends Activity {
 	
-	private static final boolean defState = false;
-	private static final boolean defPlayerState = false;
-	private static final boolean defRadioState = false;
-	private static final String defPin = "";
-	
-	private static final String stateKey = "state";
-	private static final String radioStateKey = "radioState";
-	private static final String playerStateKey = "playerState";
-	private static final String pinKey = "pin";
-	
-	private static boolean state = SettingsLayout.defState;
-	private static boolean playerState = SettingsLayout.defPlayerState;
-	private static boolean radioState = SettingsLayout.defRadioState;
-	private static String pin = SettingsLayout.defPin;
 	
 	private static SettingsLayout instance = null;
 	
-	/*private ToggleButton gState = null;
-	private ToggleButton pState = null;
-	private ToggleButton rState = null;*/
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.settings_layout);
-		this.LoadSettings();
+		SettingsManager.loadSettings(this);
 		this.UpdateComponents();
 		SettingsLayout.instance = this;
 	}
 	
-	private void LoadSettings() {
-		
-		SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-		
-		SettingsLayout.state = prefs.getBoolean(SettingsLayout.stateKey, SettingsLayout.defState);		
-		SettingsLayout.playerState = prefs.getBoolean(SettingsLayout.playerStateKey, SettingsLayout.defPlayerState);
-		SettingsLayout.radioState = prefs.getBoolean(SettingsLayout.radioStateKey, SettingsLayout.defRadioState);
-		SettingsLayout.pin = prefs.getString(SettingsLayout.pinKey, SettingsLayout.defPin);
 
-	}
 	
 	private void UpdateComponents() {
 		
 		ToggleButton gState = (ToggleButton)this.findViewById(R.id.global_state);
-		gState.setChecked(SettingsLayout.state);
+		gState.setChecked(SettingsManager.getState());
 		//gState.setActivated(this.state);
 		gState.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				SettingsLayout.state = isChecked;				
+				SettingsManager.setState(isChecked);				
 			}		
 		});
 
 		ToggleButton pState = (ToggleButton)this.findViewById(R.id.player_switcher);
-		pState.setChecked(SettingsLayout.playerState);
+		pState.setChecked(SettingsManager.getPlayerState());
 		pState.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				SettingsLayout.playerState = isChecked;				
+				SettingsManager.setPlayerState(isChecked);				
 			}		
 		});
 		
 		ToggleButton rState = (ToggleButton)this.findViewById(R.id.radio_switcher);
-		rState.setChecked(SettingsLayout.radioState);
+		rState.setChecked(SettingsManager.getRadioState());
 		rState.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				SettingsLayout.radioState = isChecked;				
+				SettingsManager.setRadioState(isChecked);				
 			}		
 		});
 		
@@ -96,7 +70,10 @@ public class SettingsLayout extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (SettingsLayout.instance != null) {
-					SettingsLayout.instance.SaveSettings();
+					SettingsManager.saveSettings(SettingsLayout.instance);
+					if (SettingsManager.getState() == true) {
+						LockScreenService.start(SettingsLayout.instance);
+					}
 					SettingsLayout.instance.finish(); 
 				}
 				
@@ -116,7 +93,7 @@ public class SettingsLayout extends Activity {
 		pinCode.setOnEditorActionListener(new OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				SettingsLayout.pin = v.getText().toString();
+				SettingsManager.setPin(v.getText().toString());
 				return false;
 			}
 			
@@ -126,7 +103,7 @@ public class SettingsLayout extends Activity {
 
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				SettingsLayout.pin = ((EditText)v).getText().toString();
+				SettingsManager.setPin(((EditText)v).getText().toString());
 				return false;
 			}
 			
@@ -135,18 +112,6 @@ public class SettingsLayout extends Activity {
 		
 	}
 	
-	private void SaveSettings() {
-		
-		SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-		Editor editor = prefs.edit();		
-		
-		editor.putBoolean(SettingsLayout.stateKey, SettingsLayout.state);
-		editor.putBoolean(SettingsLayout.playerStateKey, SettingsLayout.playerState);
-		editor.putBoolean(SettingsLayout.radioStateKey, SettingsLayout.radioState);
-		editor.putString(SettingsLayout.pinKey, SettingsLayout.pin);
-		
-		editor.commit();
-		
-	}
+
 	
 }

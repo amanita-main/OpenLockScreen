@@ -50,15 +50,15 @@ public class LockScreenActivity extends Activity {
 		wm.addView(mTopView, params);
 		
 		
-		/*Button btn = (Button)mTopView.findViewById(R.id.dummy_button);
+		Button btn = (Button)mTopView.findViewById(R.id.button1);
 		btn.setOnClickListener(new OnClickListener() {
 			 public void onClick(View v) {
-				 Log.d("TEST", "Click1");
+
 				 mTopView.removeAllViews();
 				 wm.removeView(mTopView);
 				 if (LockScreenActivity.instance != null) LockScreenActivity.instance.finish();
 			 }
-		});*/
+		});
 		
 		LockScreenActivity.instance = this;
 
