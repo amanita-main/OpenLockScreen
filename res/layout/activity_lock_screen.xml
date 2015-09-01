@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="com.hgsft.openlockscreen.LockScreenActivity" >
+    tools:context="com.hgsft.openlockscreen.LockScreenActivity">
 
     <!--
          The primary full-screen view. This can be replaced with whatever view
@@ -17,21 +17,109 @@
          android:fitsSystemWindows.
     -->
 
-    <LinearLayout
-        android:id="@+id/fullscreen_content_controls"
-        style="?metaButtonBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:background="@color/black_overlay"
-        android:orientation="horizontal"
-        tools:ignore="UselessParent" >
-    </LinearLayout>
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_1"
+        android:background="@mipmap/btn_1"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_ok" />
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_2"
+        android:background="@mipmap/ic_launcher"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="100dp"
+         />
 
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_3"
+        android:background="@mipmap/btn_3"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="100dp" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_4"
+        android:background="@mipmap/btn_4"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_5"
+        android:background="@mipmap/btn_5"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="200dp"
+         />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_6"
+        android:background="@mipmap/btn_6"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="200dp"
+         />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_7"
+        android:background="@mipmap/btn_7"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="300dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_8"
+        android:background="@mipmap/btn_8"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="300dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_9"
+        android:background="@mipmap/btn_9"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="300dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_clear"
+        android:background="@mipmap/unlock_btn_clear"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_0"
+        android:background="@mipmap/btn_0"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="400dp"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/unlock_btn_ok"
+        android:background="@mipmap/btn_unlock"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="400dp"
+        />
 </FrameLayout>

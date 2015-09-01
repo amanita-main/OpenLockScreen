@@ -1,5 +1,7 @@
 package com.hgsft.openlockscreen;
 
+import com.android.utils.ResourcesHelper;
+
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 /**
@@ -25,12 +28,18 @@ import android.widget.Button;
  */
 public class LockScreenActivity extends Activity {
 
+	private static final String btnNames = "unlock_btn_";
 
 	private static LockScreenActivity instance = null;
+	
+	private String pin = "";
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SettingsManager.loadSettings(this);
+        
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
@@ -50,15 +59,29 @@ public class LockScreenActivity extends Activity {
 		wm.addView(mTopView, params);
 		
 		
-		Button btn = (Button)mTopView.findViewById(R.id.button1);
-		btn.setOnClickListener(new OnClickListener() {
+		ImageButton btnOk = (ImageButton)mTopView.findViewById(R.id.unlock_btn_ok);
+		btnOk.setOnClickListener(new OnClickListener() {
 			 public void onClick(View v) {
-
+				 
+				 if (LockScreenActivity.instance.pin.equals(SettingsManager.getPin()) == false) return;
+						 
 				 mTopView.removeAllViews();
 				 wm.removeView(mTopView);
 				 if (LockScreenActivity.instance != null) LockScreenActivity.instance.finish();
+				 
 			 }
 		});
+		
+		ImageButton btnClear = (ImageButton)mTopView.findViewById(R.id.unlock_btn_clear);
+		btnClear.setOnClickListener(new OnClickListener() {
+			 public void onClick(View v) {
+				 
+				 LockScreenActivity.instance.pin = "";
+				
+			 }
+		});
+		
+		this.setButtons(mTopView);
 		
 		LockScreenActivity.instance = this;
 
@@ -67,26 +90,30 @@ public class LockScreenActivity extends Activity {
 		//http://stackoverflow.com/questions/22601414/how-to-set-a-frequency-for-the-fm-radio-in-android
 		//http://stackoverflow.com/questions/16955294/what-are-good-ways-to-implement-fm-radio-application-for-android-devices
         
-        //setContentView(R.layout.activity_lock_screen);
+    }
+    
+    private void setButtons(ViewGroup parent) {
+    	
+    	for (int i = 0; i < 10; ++i) {
+    		int id = ResourcesHelper.getResourceId(this, "id", LockScreenActivity.btnNames + i);
+    		ImageButton btn = (ImageButton)parent.findViewById(id);
+    		this.setBtnOnClickListener(btn, i);
+    	}
+    	
+    }
+    
+    private void setBtnOnClickListener(ImageButton btn, final int buttonId) {
+		
+    	btn.setOnClickListener(new OnClickListener() {
 
-        
-        /*WindowManager mWindowManager = (WindowManager)this.getSystemService("window");
-        View mStatusBarShowerView = new View(this);
-        //android.view.WindowManager.LayoutParams layoutparams = new android.view.WindowManager.LayoutParams(-1, 100, 2010, 2088, -2);
-        android.view.WindowManager.LayoutParams layoutparams = new android.view.WindowManager.LayoutParams(-1, 100, 2010, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_FULLSCREEN, -2);
-        layoutparams.gravity = 49;
-        mWindowManager.addView(mStatusBarShowerView, layoutparams);*/
-        
-        /*if (Build.VERSION.SDK_INT < 16) {
-    	   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    	 } else {
-    	     View decorView = getWindow().getDecorView();
-    	      int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-    	      decorView.setSystemUiVisibility(uiOptions);
-    	      ActionBar actionBar = getActionBar();
-    	      actionBar.hide();
-    	 }*/
-
+			@Override
+			public void onClick(View v) {
+				
+				if (LockScreenActivity.instance != null) LockScreenActivity.instance.pin += String.valueOf(buttonId);
+			}
+			
+		});
+    	
     }
 
    
