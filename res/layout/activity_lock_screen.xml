@@ -15,7 +15,7 @@ tools:context="com.hgsft.openlockscreen.LockScreenActivity"
         android:layout_height="100dp"
         android:background="@mipmap/btn_1"
         android:contentDescription="@string/desc"
-        android:visibility="gone" />
+        android:visibility="invisible" />
 
  <ImageButton
      android:id="@+id/play_pause_btn"
@@ -23,7 +23,7 @@ tools:context="com.hgsft.openlockscreen.LockScreenActivity"
      android:layout_height="100dp"
      android:background="@mipmap/ic_launcher"
      android:contentDescription="@string/desc"
-     android:visibility="gone" />
+     android:visibility="invisible" />
 
  <ImageButton
      android:id="@+id/next_btn"
@@ -31,7 +31,7 @@ tools:context="com.hgsft.openlockscreen.LockScreenActivity"
      android:layout_height="100dp"
      android:background="@mipmap/btn_3"
      android:contentDescription="@string/desc"
-     android:visibility="gone" />
+     android:visibility="invisible" />
     
 <ImageButton
     android:id="@+id/unlock_btn_1"
