@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">OpenLockScreen</string>
+    <string name="desc">PinCodeButtons</string>
 
      <string name="global_state">State</string>
      <string name="save_btn">Save</string>

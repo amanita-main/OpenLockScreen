@@ -2,22 +2,15 @@ package com.hgsft.openlockscreen;
 
 import com.android.utils.ResourcesHelper;
 
-import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.PixelFormat;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -53,9 +46,10 @@ public class LockScreenActivity extends Activity {
         		PixelFormat.TRANSLUCENT);
 
 		final WindowManager wm = (WindowManager) getApplicationContext()
-		    .getSystemService(this.WINDOW_SERVICE);
+		    .getSystemService(Context.WINDOW_SERVICE);
 
-		final ViewGroup mTopView = (ViewGroup) getLayoutInflater().inflate(R.layout.activity_lock_screen, null);
+		final ViewGroup mTopView = (ViewGroup) this.getLayoutInflater().inflate(R.layout.activity_lock_screen, null);
+		
 		getWindow().setAttributes(params);
 		wm.addView(mTopView, params);
 		
