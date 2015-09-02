@@ -5,8 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import android.support.v4.content.LocalBroadcastManager;
+//import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+//import android.app.KeyguardManager;
 
 public class LockScreenService extends Service {
 
@@ -28,18 +29,30 @@ public class LockScreenService extends Service {
 	
 	public static void start(Context ctx) {
 		ctx.startService(new Intent(ctx, LockScreenService.class));
+		
 	}
+	
+	/*android.app.KeyguardManager.KeyguardLock mKeyGuardLock;
+	
+	public void killDefaultLockService() {
+		if (mKeyGuardLock == null) {
+			mKeyGuardLock = ((KeyguardManager)getSystemService("keyguard")).newKeyguardLock("iCard LockScreen");
+		}
+		mKeyGuardLock.disableKeyguard();
+	}*/
 	
 	@Override
 	public void onCreate() {
 		 
 		super.onCreate();
 
+		//killDefaultLockService();
+		
 		IntentFilter intentfilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		intentfilter.addAction(Intent.ACTION_SCREEN_OFF);
 		this.mReceiver = new LockScreenReceiver();
 		this.registerReceiver(this.mReceiver, intentfilter);
-	     
+	    Log.d("TEST", "STARTED");
 		/*intentfilter = new IntentFilter("com.lockscreen.registered_first");
 		intentfilter.addAction("com.lockscreen.registered");
 		intentfilter.addAction("com.lockscreen.cards");
@@ -52,6 +65,7 @@ public class LockScreenService extends Service {
 	
 	@Override
 	public void onDestroy() {
+		Log.d("TEST", "DESTROY");
 		 this.unregisterReceiver(this.mReceiver);
 	     /*LocalBroadcastManager.getInstance(this).unregisterReceiver(mServerBroadcastReceiver);*/
 	     super.onDestroy();

@@ -5,6 +5,7 @@ import com.android.utils.ResourcesHelper;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
@@ -115,6 +116,6 @@ public class LockScreenActivity extends Activity {
 		});
     	
     }
-
+    
    
 }
